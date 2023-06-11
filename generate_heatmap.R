@@ -10,8 +10,6 @@ args = commandArgs(trailingOnly=TRUE)
 myfilelist <- strsplit(args[1], ",")[[1]]
 mynamelist <- strsplit(args[2], ",")[[1]]
 
-print(mynamelist)
-
 df <- read_csv(myfilelist[1], 
                 col_types = cols(count = col_integer()))
 
@@ -37,7 +35,7 @@ mat <- log10(mat)
 
 rownames(mat) = df$species
 
-png("metagenome_heatmap_test.png", width = 63.5, height = 40, units = "cm", res = 100)
+png(args[3], width = 63.5, height = 40, units = "cm", res = 100)
 ht<- Heatmap(mat, name = "RPM (log 10)", col = col_fun, rect_gp = gpar(col = "#c6c6c4", lwd = 1), use_raster = TRUE, raster_device = "png",
         show_column_name = FALSE, show_row_dend = FALSE, show_column_dend = FALSE, row_names_side = "right", row_labels = rownames(mat), cluster_row_slices = FALSE, row_title = NULL,
         column_order = colnames(mat), row_names_gp = gpar(fontface = "italic")
