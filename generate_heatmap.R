@@ -3,6 +3,7 @@ library(readr)
 library(ComplexHeatmap)
 library(GetoptLong)
 library(circlize)
+col_fun = colorRamp2(c(0, 0, 5), c("#f3f1ec", "white", "#dc0626"))
 
 args = commandArgs(trailingOnly=TRUE)
 
