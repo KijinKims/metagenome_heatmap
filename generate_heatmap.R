@@ -1,23 +1,11 @@
-library (optparse)
 library(dplyr)
 library(readr)
 library(ComplexHeatmap)
 library(GetoptLong)
 library(circlize)
 
-option_list <- list ( make_option (c("-f","--filelist"), 
-                                   help="comma separated list of files"),
-                        make_option (c("-n","--namelist"), 
-                                   help="comma separated list of names")
-                     )
-
-parser <-OptionParser(option_list=option_list)
-arguments <- parse_args(parser, positional_arguments=TRUE)
-opt <- arguments$options
-args <- arguments$args
-
-myfilelist <- strsplit(opt$filelist, ",")[[1]]
-mynamelist <- strsplit(opt$namelist, ",")[[1]]
+myfilelist <- strsplit(argv[1], ",")[[1]]
+mynamelist <- strsplit(argv[2], ",")[[1]]
 
 print(mynamelist)
 
