@@ -4,8 +4,10 @@ library(ComplexHeatmap)
 library(GetoptLong)
 library(circlize)
 
-myfilelist <- strsplit(argv[1], ",")[[1]]
-mynamelist <- strsplit(argv[2], ",")[[1]]
+args = commandArgs(trailingOnly=TRUE)
+
+myfilelist <- strsplit(args[1], ",")[[1]]
+mynamelist <- strsplit(args[2], ",")[[1]]
 
 print(mynamelist)
 
