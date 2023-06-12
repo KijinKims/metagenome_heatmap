@@ -19,6 +19,7 @@ And you need to install following R packages.
 - ComplexHeatmap
 - GetoptLong
 - circlize
+- randomcoloR
 
 Some packages can be easily installed with `install_packages()` function. However, some packages should be installed with Bioconductor.
 
