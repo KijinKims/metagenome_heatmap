@@ -3,6 +3,7 @@ library(readr)
 library(ComplexHeatmap)
 library(GetoptLong)
 library(circlize)
+library(randomcoloR)
 col_fun = colorRamp2(c(0, 0, 5), c("#f3f1ec", "white", "#dc0626"))
 
 args = commandArgs(trailingOnly=TRUE)
@@ -28,6 +29,11 @@ for (i in 2:(length(myfilelist))) {
 }
 
 df <- replace(df, is.na(df), 0)
+palette <- distinctColorPalette(length(unique(df$genus)))
+genus_cols = setNames(palette, unique(df$genus))
+df$genus <- factor(df$genus, levels=unique(df$genus))
+
+df <- df[order(as.numeric(df$genus)),]
 
 mat <- as.matrix(df[3:length(df)])
 mat <- replace(mat, mat == 0 , 1)
@@ -36,6 +42,7 @@ mat <- log10(mat)
 rownames(mat) = df$species
 
 row_ha = rowAnnotation(genus = df$genus,
+                       col = list(genus = genus_cols),
                        gp = gpar(col = "#c6c6c4"),
                        annotation_name_gp= gpar(fontface = "bold"),
                        annotation_legend_param = list(genus = list(at = unique(df$genus)))
