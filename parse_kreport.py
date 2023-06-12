@@ -9,6 +9,9 @@ parser.add_argument('--input', '-i', metavar='kreport.txt',
 parser.add_argument('--output', '-o', metavar='taxreadcount.csv',
         help='output file')
 
+parser.add_argument('--taxid', '-t', default='1980413',
+        help='taxid of virus with which you want to generate the heatmap. Default is the taxid of Hantavirus')
+
 args = parser.parse_args()
 
 f = open(args.input)
@@ -19,7 +22,7 @@ for line in f.readlines():
     _, _, read_number, level, taxid, taxname = line.split('\t')
     read_number = int(read_number)
     taxname = taxname.strip()
-    if taxid == '1980413':
+    if taxid == args.taxid:
         hantaExists = True
         continue
     if hantaExists and level == 'F':
