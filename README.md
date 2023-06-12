@@ -68,6 +68,3 @@ The final example command line could be
 ```console
 Rscript generate_heatmap.R sample1.txt,sample2.txt,sample3.txt sample1,sample2,sample3 output_heatmap.png
 ```
-
-## Future direction
-Row annotation color-coded by genus.
