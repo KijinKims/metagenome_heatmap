@@ -39,6 +39,7 @@ try:
     df.columns = ['count']
 except ValueError:
     print("No entries found. Please check your taxid and make sure that the virus family is included in RefSeq.", file=sys.stderr)
+    sys.exit()
 df.reset_index(inplace=True)
 df = df.rename(columns = {'index':'species'})
 df['genus'] = df['species'].map(genus_dict)
