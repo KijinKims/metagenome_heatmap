@@ -34,6 +34,7 @@ genus_cols = setNames(palette, unique(df$genus))
 df$genus <- factor(df$genus, levels=unique(df$genus))
 
 df <- df[order(as.numeric(df$genus)),]
+df <- df[apply(df[,-c(1,2)], 1, function(x) !all(x==0)),]
 
 mat <- as.matrix(df[3:length(df)])
 mat <- replace(mat, mat == 0 , 1)
