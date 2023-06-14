@@ -54,11 +54,11 @@ mat <- log10(mat)
 
 rownames(mat) = df$species
 
-row_ha = rowAnnotation(family = df$family,
-                       col = list(family = family_cols),
+row_ha = rowAnnotation(Family = df$family,
+                       col = list(Family = family_cols),
                        gp = gpar(col = "#c6c6c4"),
                        annotation_name_gp= gpar(fontface = "bold"),
-                       annotation_legend_param = list(family = list(at = unique(df$family)))
+                       annotation_legend_param = list(Family = list(at = unique(df$family)))
                        )
 
 host_species_palette <- distinctColorPalette(length(unique(left_joined$`Host species`)))
