@@ -17,7 +17,7 @@ hantaExists = False
 tax_dict = {}
 family_dict = {}
 for line in f.readlines():
-    _, _, read_number, level, taxname = line.split('\t')
+    _, _, read_number, level, _, taxname = line.split('\t')
     read_number = int(read_number)
     taxname = taxname.strip()
     if hantaExists and level == 'F':
