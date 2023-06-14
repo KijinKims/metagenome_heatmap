@@ -40,6 +40,7 @@ df <- df[apply(df[,-c(1,2)], 1, function(x) !all(x<=1)),]
 palette <- distinctColorPalette(length(unique(df$family)))
 family_cols = setNames(palette, unique(df$family))
 df$family <- factor(df$family, levels=unique(df$family))
+df <- df[order(df$family), ]
 
 join_df <- data.frame(Sample = colnames(df)[-(1:2)])
 mmc1 <- read_csv(args[3])
