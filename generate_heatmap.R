@@ -69,7 +69,7 @@ ha = HeatmapAnnotation(
   `Host species` = left_joined$species,
   `Health condition` =  left_joined$`Health condition`,
   col = list(`Host species` = host_species_cols,
-             `Health condition` = c("Healthy" = "#4dc8f0", "Unhealthy" = "#cdd3d9"),
+             `Health condition` = c("Healthy" = "#4dc8f0", "Unhealthy" = "#cdd3d9")
   ),
   gp = gpar(col = "#c6c6c4"),
   gap = unit(2, "mm"),
