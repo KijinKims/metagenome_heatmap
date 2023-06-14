@@ -19,10 +19,13 @@ for line in f.readlines():
     _, _, read_number, level, _, taxname = line.split('\t')
     read_number = int(read_number)
     taxname = taxname.strip()
+    if level in ['D', 'K', 'P', 'C', 'O']:
+        family = ''
+
     if level == 'F':
         family = taxname
 
-    if level == 'S':
+    if family and level == 'S':
         tax_dict[taxname] = read_number
         family_dict[taxname] = family
 
