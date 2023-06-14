@@ -25,15 +25,15 @@ for (i in 2:(length(myfilelist))) {
     colnames(df2)[3] = mynamelist[i]
 
     # Perform some operation. For example, print the sum of the current and next element
-    df <- full_join(df, df2, by=c('species', 'genus'))
+    df <- full_join(df, df2, by=c('species', 'family'))
 }
 
 df <- replace(df, is.na(df), 0)
-palette <- distinctColorPalette(length(unique(df$genus)))
-genus_cols = setNames(palette, unique(df$genus))
-df$genus <- factor(df$genus, levels=unique(df$genus))
+palette <- distinctColorPalette(length(unique(df$family)))
+family_cols = setNames(palette, unique(df$family))
+df$family <- factor(df$family, levels=unique(df$family))
 
-df <- df[order(as.numeric(df$genus)),]
+df <- df[order(as.numeric(df$family)),]
 df <- df[apply(df[,-c(1,2)], 1, function(x) !all(x==0)),]
 
 mat <- as.matrix(df[3:length(df)])
@@ -42,11 +42,11 @@ mat <- log10(mat)
 
 rownames(mat) = df$species
 
-row_ha = rowAnnotation(genus = df$genus,
-                       col = list(genus = genus_cols),
+row_ha = rowAnnotation(family = df$family,
+                       col = list(family = family_cols),
                        gp = gpar(col = "#c6c6c4"),
                        annotation_name_gp= gpar(fontface = "bold"),
-                       annotation_legend_param = list(genus = list(at = unique(df$genus)))
+                       annotation_legend_param = list(family = list(at = unique(df$family)))
                        )
 
 png(args[3], width = 70, height = 40, units = "cm", res = 100)
