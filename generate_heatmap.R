@@ -62,8 +62,8 @@ row_ha = rowAnnotation(family = df$family,
                        annotation_legend_param = list(family = list(at = unique(df$family)))
                        )
 
-host_species_palette <- distinctColorPalette(length(unique(df$`Host species`)))
-host_species_cols = setNames(host_species_palette, unique(df$`Host species`))
+host_species_palette <- distinctColorPalette(length(unique(left_joined$`Host species`)))
+host_species_cols = setNames(host_species_palette, unique(left_joined$`Host species`))
 
 ha = HeatmapAnnotation(
   `Host species` = left_joined$species,
