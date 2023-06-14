@@ -15,6 +15,7 @@ args = parser.parse_args()
 f = open(args.input)
 tax_dict = {}
 family_dict = {}
+family = ''
 for line in f.readlines():
     _, _, read_number, level, _, taxname = line.split('\t')
     read_number = int(read_number)
