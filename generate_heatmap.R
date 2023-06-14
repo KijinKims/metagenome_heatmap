@@ -73,7 +73,7 @@ ha = HeatmapAnnotation(
   ),
   gp = gpar(col = "#c6c6c4"),
   gap = unit(2, "mm"),
-  annotation_name_gp= gpar(fontface = c("bold", "bold", "italic")),
+  annotation_name_gp= gpar(fontface = c("bold", "bold")),
   annotation_legend_param = list(`Host species` = list(at = unique(left_joined$`Host species`)),
                                  `Health condition` = list(at = c("Healthy", "Unhealthy")))
 )
