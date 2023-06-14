@@ -11,21 +11,28 @@ args = commandArgs(trailingOnly=TRUE)
 myfilelist <- strsplit(args[1], ",")[[1]]
 mynamelist <- strsplit(args[2], ",")[[1]]
 
-df <- read_csv(myfilelist[1], 
-                col_types = cols(count = col_integer()))
+if (length(myfilelist) > 1){
+  df <- read_csv(myfilelist[1], 
+                  col_types = cols(count = col_integer()))
 
-colnames(df)[3] = mynamelist[1]
+  colnames(df)[3] = mynamelist[1]
 
-for (i in 2:(length(myfilelist))) {
-  # Access the current element and the next one
-    curr_file <- myfilelist[i]
-    
-    df2 <- read_csv(curr_file, 
-                    col_types = cols(count = col_integer()))
-    colnames(df2)[3] = mynamelist[i]
+  for (i in 2:(length(myfilelist))) {
+    # Access the current element and the next one
+      curr_file <- myfilelist[i]
+      
+      df2 <- read_csv(curr_file, 
+                      col_types = cols(count = col_integer()))
+      colnames(df2)[3] = mynamelist[i]
 
-    # Perform some operation. For example, print the sum of the current and next element
-    df <- full_join(df, df2, by=c('species', 'family'))
+      # Perform some operation. For example, print the sum of the current and next element
+      df <- full_join(df, df2, by=c('species', 'family'))
+  }
+}
+else {
+  df <- read_csv(myfilelist[1], 
+                  col_types = cols(count = col_integer()))
+  colnames(df)[3] = mynamelist[1]
 }
 
 df <- replace(df, is.na(df), 0)
