@@ -28,8 +28,7 @@ if (length(myfilelist) > 1){
       # Perform some operation. For example, print the sum of the current and next element
       df <- full_join(df, df2, by=c('species', 'family'))
   }
-}
-else {
+} else {
   df <- read_csv(myfilelist[1], 
                   col_types = cols(count = col_integer()))
   colnames(df)[3] = mynamelist[1]
