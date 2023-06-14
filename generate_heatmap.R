@@ -43,7 +43,7 @@ df <- df[order(as.numeric(df$family)),]
 df <- df[apply(df[,-c(1,2)], 1, function(x) !all(x==0)),]
 
 
-join_df <- data.frame(Sample = colnames(mmc2)[-(1:2)])
+join_df <- data.frame(Sample = colnames(df)[-(1:2)])
 mmc1 <- read_csv(args[3])
 left_joined <- left_join(join_df, mmc1, by=c('Sample'))
 
