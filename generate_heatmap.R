@@ -80,7 +80,7 @@ ha = HeatmapAnnotation(
 png(args[4], width = 70, height = 40, units = "cm", res = 100)
 ht<- Heatmap(mat, name = "RPM (log 10)", col = col_fun, rect_gp = gpar(col = "#c6c6c4", lwd = 1), use_raster = TRUE, raster_device = "png",
         show_column_name = FALSE, show_row_dend = FALSE, show_column_dend = FALSE, row_labels = rownames(mat), cluster_row_slices = FALSE, row_title = NULL,
-        row_names_max_width = unit(8, "cm"), row_names_side = "left", row_order = rownames(mat), column_order = colnames(mat), right_annotation = row_ha, row_names_gp = gpar(fontface = "italic"),
+        row_names_max_width = unit(12, "cm"), row_names_side = "left", row_order = rownames(mat), column_order = colnames(mat), right_annotation = row_ha, row_names_gp = gpar(fontface = "italic"),
         top_annotation = ha, heatmap_legend_param = list(direction = "horizontal"))
 
 draw(ht)
