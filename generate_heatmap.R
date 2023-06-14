@@ -66,7 +66,7 @@ host_species_palette <- distinctColorPalette(length(unique(left_joined$`Host spe
 host_species_cols = setNames(host_species_palette, unique(left_joined$`Host species`))
 
 ha = HeatmapAnnotation(
-  `Host species` = left_joined$species,
+  `Host species` = left_joined$`Host species`,
   `Health condition` =  left_joined$`Health condition`,
   col = list(`Host species` = host_species_cols,
              `Health condition` = c("Healthy" = "#4dc8f0", "Unhealthy" = "#cdd3d9")
