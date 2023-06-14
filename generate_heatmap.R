@@ -84,3 +84,7 @@ ht<- Heatmap(mat, name = "RPM (log 10)", col = col_fun, rect_gp = gpar(col = "#c
 
 draw(ht)
 dev.off()
+
+png(paste0("true_order", args[4]), width = 10, height = 40, units = "cm", res = 100)
+draw(row_ha)
+dev.off()
