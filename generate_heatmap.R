@@ -37,11 +37,10 @@ if (length(myfilelist) > 1){
 df <- replace(df, is.na(df), 0)
 palette <- distinctColorPalette(length(unique(df$family)))
 family_cols = setNames(palette, unique(df$family))
+
+df <- df[apply(df[,-c(1,2)], 1, function(x) !all(x<=1)),]
+
 df$family <- factor(df$family, levels=unique(df$family))
-
-df <- df[order(as.numeric(df$family)),]
-df <- df[apply(df[,-c(1,2)], 1, function(x) !all(x==0)),]
-
 
 join_df <- data.frame(Sample = colnames(df)[-(1:2)])
 mmc1 <- read_csv(args[3])
