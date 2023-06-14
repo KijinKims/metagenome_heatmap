@@ -36,21 +36,10 @@ You can run the classification and parse the output with the command lines
 ```console
 centrifuge -x [centrifuge_index_dir]/[centrifuge_index_name] -U [input_fastq] -S [centrifuge_result]
 centrifuge-kreport -x [centrifuge_index_dir]/[centrifuge_index_name] [centrifuge_result] > [centrifuge_kreport_result]
-python parse_kreport.py --input [centrifuge_kreport_result] --output [parsed_kreport] --taxid [taxid]
+python parse_kreport.py --input [centrifuge_kreport_result] --output [parsed_kreport]
 ```
 
 Note that the Centrifuge index is given in the form of `directory/name`. For example, if you downloaded the index from the  link provided above, it can be given as `centrifuge_viral_230213/abv`.
-
-And the NCBI taxid of the virus family you want needs to be given. You can find it by browsing the page [Browse viral genomes by family](https://www.ncbi.nlm.nih.gov/genomes/GenomesGroup.cgi?taxid=10239&sort=taxonomy) at NCBI. For example, if you want to genearte the heatmap of hantaviridae Family, click the family name and `Taxonomy` button like the below screenshot.
-![screenshot1](/screenshot/screenshot1.png)
-
-Next, click the family name.
-![screenshot2](/screenshot/screenshot2.png)
-
-You can find the taxid of Hantaviridae.
-![screenshot3](/screenshot/screenshot3.png)
-
-If the virus family you want is not included in [RefSeq](https://www.ncbi.nlm.nih.gov/refseq/), it is likely that you get the empty result. The default value of [taxid] is `1980413`, which is the taxid of Hantaviridae.
 
 Please iterate the above process for each fastq. Then, you might have several parsed kreport files in the end.
 
