@@ -13,17 +13,16 @@ parser.add_argument('--output', '-o', metavar='taxreadcount.csv',
 args = parser.parse_args()
 
 f = open(args.input)
-hantaExists = False
 tax_dict = {}
 family_dict = {}
 for line in f.readlines():
     _, _, read_number, level, _, taxname = line.split('\t')
     read_number = int(read_number)
     taxname = taxname.strip()
-    if hantaExists and level == 'F':
+    if level == 'F':
         family = taxname
 
-    if hantaExists and level == 'S':
+    if level == 'S':
         tax_dict[taxname] = read_number
         family_dict[taxname] = family
 
