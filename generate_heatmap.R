@@ -23,6 +23,9 @@ parser$add_argument("-o", "--output",
     metavar="output.png")
 parser$add_argument("--min-read-count", type="integer", default=1, 
     help = "Minimum read count to be considered.")
+parser$add_argument('-e', "--export_raw",
+    metavar="export.csv",
+    help = "File path to which the raw read count matrix is exported.")
 
 args <- parser$parse_args()
 
@@ -59,6 +62,10 @@ palette <- distinctColorPalette(length(unique(df$family)))
 family_cols = setNames(palette, unique(df$family))
 df$family <- factor(df$family, levels=unique(df$family))
 df <- df[order(df$family), ]
+
+if(args$export_raw){
+  write.csv(df, args$export_raw, row.names=FALSE)
+}
 
 join_df <- data.frame(Sample = colnames(df)[-(1:2)])
 mmc1 <- read_csv(args$metadata)
