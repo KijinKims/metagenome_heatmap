@@ -64,7 +64,7 @@ family_cols = setNames(palette, unique(df$family))
 df$family <- factor(df$family, levels=unique(df$family))
 df <- df[order(df$family), ]
 
-if(args$export_raw){
+if(args$export_raw != ""){
   write.csv(df, args$export_raw, row.names=FALSE)
 }
 
