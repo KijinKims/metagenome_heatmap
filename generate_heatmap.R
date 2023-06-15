@@ -65,7 +65,7 @@ df$family <- factor(df$family, levels=unique(df$family))
 df <- df[order(df$family), ]
 
 if(args$export_raw != ""){
-  write.csv(df, args$export_raw, row.names=FALSE)
+  write.csv(df, args$export_raw, row.names=FALSE, quote=FALSE)
 }
 
 join_df <- data.frame(Sample = colnames(df)[-(1:2)])
