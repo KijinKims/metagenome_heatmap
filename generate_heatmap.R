@@ -24,6 +24,7 @@ parser$add_argument("-o", "--output",
 parser$add_argument("--min-read-count", type="integer", default=1, 
     help = "Minimum read count to be considered.")
 parser$add_argument('-e', "--export_raw",
+    default = "",
     metavar="export.csv",
     help = "File path to which the raw read count matrix is exported.")
 
