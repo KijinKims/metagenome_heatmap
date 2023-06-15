@@ -46,17 +46,33 @@ Please iterate the above process for each fastq. Then, you might have several pa
 
 ### Heatmap generation
 
-The heatmap is generated with the R script `generate_heatmap.R`. It requires three positional arguments. 
+The heatmap is generated with the R script `generate_heatmap.R`.
 
-1. The first is the parsed kreport results from the above classificaiton step joined with commas. For example, if you have three files `sample1.txt`, `sample2.txt`, and `sample3.txt`, the first argument should be `sample1.txt,sample2.txt,sample3.txt`. In-between space or file name including space is not allowed.
-
-2. The second is the sample ids corresponding to each file. For example, you can set `sample1,sample2,sample3` for the above example input files.
-
-3. Last is the output png file including the resulting heatmap. Only png is allowed unless you edit the code by yourself. For example, `output_heatmap.png` can be given.
-
-The final example command line could be
 ```console
-Rscript generate_heatmap.R sample1.txt,sample2.txt,sample3.txt sample1,sample2,sample3 output_heatmap.png
+generate_heatmap.R [-h] [-f file1.txt,file2.txt,file3.txt]
+                          [-n sample1,sample2,sample3] [-m metadata.csv]
+                          [-o output.png] [--min-read-count MIN_READ_COUNT]
+
+options:
+  -h, --help            show this help message and exit
+  -f file1.txt,file2.txt,file3.txt, --files file1.txt,file2.txt,file3.txt
+                        Input file as comma-delimited list.
+  -n sample1,sample2,sample3, --names sample1,sample2,sample3
+                        Sample name as comma-delimited list. Each corresponds
+                        to the input file standing at the same position.
+  -m metadata.csv, --metadata metadata.csv
+                        Metadata as in csv consisting of three columns:
+                        Sample, Host species, Health condition. Health
+                        condition should be either Healthy or Unhealthy.
+  -o output.png, --output output.png
+                        Output file path. It should be with .png.
+  --min-read-count MIN_READ_COUNT
+                        Minimum read count to be considered.
+```
+
+Below is the example command line.
+```console
+Rscript generate_heatmap.R -f file1.txt,file2.txt,file3.txt -n sample1,sample2,sample3 -o output.png --min-read-count 5
 ```
 
 Below is the example output

@@ -13,14 +13,14 @@ parser$add_argument("-f", "--files",
     help="Input file as comma-delimited list.",
     metavar="file1.txt,file2.txt,file3.txt")
 parser$add_argument("-n", "--names",
-    help="Sample name as comma-delimited list. Each corresponds to the input file standing at the same position."
+    help="Sample name as comma-delimited list. Each corresponds to the input file standing at the same position.",
     metavar="sample1,sample2,sample3")
 parser$add_argument("-m", "--metadata", 
     help="Metadata as in csv consisting of three columns: Sample, Host species, Health condition. Health condition should be either Healthy or Unhealthy.",
     metavar="metadata.csv")
 parser$add_argument("-o", "--output", 
     help="Output file path. It should be with .png.",
-    metavar="metadata.csv")
+    metavar="output.png")
 parser$add_argument("--min-read-count", type="integer", default=1, 
     help = "Minimum read count to be considered.")
 
