@@ -51,7 +51,7 @@ The heatmap is generated with the R script `generate_heatmap.R`.
 ```console
 generate_heatmap.R [-h] [-f file1.txt,file2.txt,file3.txt]
                           [-n sample1,sample2,sample3] [-m metadata.csv]
-                          [-o output.png] [--min-read-count MIN_READ_COUNT]
+                          [-o output.png] [--min-read-count MIN_READ_COUNT] [-e export.csv]
 
 options:
   -h, --help            show this help message and exit
@@ -68,11 +68,13 @@ options:
                         Output file path. It should be with .png.
   --min-read-count MIN_READ_COUNT
                         Minimum read count to be considered.
+  -e export.csv --export-raw export.csv
+                        File path to which the raw read count matrix is exported.
 ```
 
 Below is the example command line.
 ```console
-Rscript generate_heatmap.R -f file1.txt,file2.txt,file3.txt -n sample1,sample2,sample3 -o output.png --min-read-count 5
+Rscript generate_heatmap.R -f file1.txt,file2.txt,file3.txt -n sample1,sample2,sample3 -o output.png --min-read-count 5 -e export.csv
 ```
 
 Below is the example output
