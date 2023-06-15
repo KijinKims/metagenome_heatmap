@@ -20,6 +20,7 @@ And you need to install following R packages.
 - GetoptLong
 - circlize
 - randomcoloR
+- argparse
 
 Some packages can be easily installed with `install_packages()` function. However, some packages should be installed with Bioconductor.
 

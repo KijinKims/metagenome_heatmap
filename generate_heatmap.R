@@ -4,12 +4,30 @@ library(ComplexHeatmap)
 library(GetoptLong)
 library(circlize)
 library(randomcoloR)
+library(argparse)
 col_fun = colorRamp2(c(0, 0, 5), c("#f3f1ec", "white", "#dc0626"))
 
-args = commandArgs(trailingOnly=TRUE)
+parser <- ArgumentParser()
 
-myfilelist <- strsplit(args[1], ",")[[1]]
-mynamelist <- strsplit(args[2], ",")[[1]]
+parser$add_argument("-f", "--files",
+    help="Input file as comma-delimited list.",
+    metavar="file1.txt,file2.txt,file3.txt")
+parser$add_argument("-n", "--names",
+    help="Sample name as comma-delimited list. Each corresponds to the input file standing at the same position."
+    metavar="sample1,sample2,sample3")
+parser$add_argument("-m", "--metadata", 
+    help="Metadata as in csv consisting of three columns: Sample, Host species, Health condition. Health condition should be either Healthy or Unhealthy.",
+    metavar="metadata.csv")
+parser$add_argument("-o", "--output", 
+    help="Output file path. It should be with .png.",
+    metavar="metadata.csv")
+parser$add_argument("--min-read-count", type="integer", default=1, 
+    help = "Minimum read count to be considered.")
+
+args <- parser$parse_args()
+
+myfilelist <- strsplit(args$files, ",")[[1]]
+mynamelist <- strsplit(args$names, ",")[[1]]
 
 if (length(myfilelist) > 1){
   df <- read_csv(myfilelist[1], 
@@ -35,7 +53,7 @@ if (length(myfilelist) > 1){
 }
 
 df <- replace(df, is.na(df), 0)
-df <- df[apply(df[,-c(1,2)], 1, function(x) !all(x<=1)),]
+df <- df[apply(df[,-c(1,2)], 1, function(x) !all(x<=args$min_read_count)),]
 
 palette <- distinctColorPalette(length(unique(df$family)))
 family_cols = setNames(palette, unique(df$family))
@@ -43,7 +61,7 @@ df$family <- factor(df$family, levels=unique(df$family))
 df <- df[order(df$family), ]
 
 join_df <- data.frame(Sample = colnames(df)[-(1:2)])
-mmc1 <- read_csv(args[3])
+mmc1 <- read_csv(args$metadata)
 left_joined <- left_join(join_df, mmc1, by=c('Sample'))
 
 ordered_mmc2 <- df[left_joined$Sample]
@@ -77,7 +95,7 @@ ha = HeatmapAnnotation(
                                  `Health condition` = list(at = c("Healthy", "Unhealthy")))
 )
 
-png(args[4], width = 70, height = 40, units = "cm", res = 100)
+png(args$output, width = 70, height = 40, units = "cm", res = 100)
 ht<- Heatmap(mat, name = "RPM (log 10)", col = col_fun, rect_gp = gpar(col = "#c6c6c4", lwd = 1), use_raster = TRUE, raster_device = "png",
         show_column_name = FALSE, show_row_dend = FALSE, show_column_dend = FALSE, row_labels = rownames(mat), cluster_row_slices = FALSE, row_title = NULL,
         row_names_max_width = unit(12, "cm"), row_names_side = "left", row_order = rownames(mat), column_order = colnames(mat), right_annotation = row_ha, row_names_gp = gpar(fontface = "italic"),
@@ -86,6 +104,6 @@ ht<- Heatmap(mat, name = "RPM (log 10)", col = col_fun, rect_gp = gpar(col = "#c
 draw(ht)
 dev.off()
 
-png(paste0("true_order_", args[4]), width = 10, height = 40, units = "cm", res = 100)
+png(paste0("true_order_", args$output), width = 10, height = 40, units = "cm", res = 100)
 draw(row_ha)
 dev.off()
