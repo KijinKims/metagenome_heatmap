@@ -103,7 +103,8 @@ ha = HeatmapAnnotation(
                                  `Health condition` = list(at = c("Healthy", "Unhealthy")))
 )
 
-png(args$output, width = 70, height = 40, units = "cm", res = 100)
+setEPS()
+postscript(args$output, width = 28, height = 15)
 ht<- Heatmap(mat, name = "RPM (log 10)", col = col_fun, rect_gp = gpar(col = "#c6c6c4", lwd = 1), use_raster = TRUE, raster_device = "png",
         show_column_name = FALSE, show_row_dend = FALSE, show_column_dend = FALSE, row_labels = rownames(mat), cluster_row_slices = FALSE, row_title = NULL,
         row_names_max_width = unit(12, "cm"), row_names_side = "left", row_order = rownames(mat), column_order = colnames(mat), right_annotation = row_ha, row_names_gp = gpar(fontface = "italic"),
@@ -112,6 +113,7 @@ ht<- Heatmap(mat, name = "RPM (log 10)", col = col_fun, rect_gp = gpar(col = "#c
 draw(ht)
 dev.off()
 
-png(paste0("true_order_", args$output), width = 10, height = 40, units = "cm", res = 100)
+setEPS()
+postscript(paste0("true_order_", args$output), width = 4, height = 15)
 draw(row_ha)
 dev.off()
