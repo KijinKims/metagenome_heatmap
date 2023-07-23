@@ -74,7 +74,7 @@ options:
 
 Below is the example command line.
 ```console
-Rscript generate_heatmap.R -f file1.txt,file2.txt,file3.txt -n sample1,sample2,sample3 -o output.eps --min-read-count 5 -e export.csv
+Rscript generate_heatmap.R -f file1.txt,file2.txt,file3.txt -n sample1,sample2,sample3 -m metadata.csv -o output.eps --min-read-count 5 -e export.csv
 ```
 
 Below is the example output
