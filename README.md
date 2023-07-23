@@ -51,7 +51,7 @@ The heatmap is generated with the R script `generate_heatmap.R`.
 ```console
 generate_heatmap.R [-h] [-f file1.txt,file2.txt,file3.txt]
                           [-n sample1,sample2,sample3] [-m metadata.csv]
-                          [-o output.png] [--min-read-count MIN_READ_COUNT] [-e export.csv]
+                          [-o output.eps] [--min-read-count MIN_READ_COUNT] [-e export.csv]
 
 options:
   -h, --help            show this help message and exit
@@ -64,8 +64,8 @@ options:
                         Metadata as in csv consisting of three columns:
                         Sample, Host species, Health condition. Health
                         condition should be either Healthy or Unhealthy.
-  -o output.png, --output output.png
-                        Output file path. It should be with .png.
+  -o output.eps, --output output.eps
+                        Output file path. It should be with .eps.
   --min-read-count MIN_READ_COUNT
                         Minimum read count to be considered.
   -e export.csv --export-raw export.csv
@@ -74,8 +74,8 @@ options:
 
 Below is the example command line.
 ```console
-Rscript generate_heatmap.R -f file1.txt,file2.txt,file3.txt -n sample1,sample2,sample3 -o output.png --min-read-count 5 -e export.csv
+Rscript generate_heatmap.R -f file1.txt,file2.txt,file3.txt -n sample1,sample2,sample3 -o output.eps --min-read-count 5 -e export.csv
 ```
 
 Below is the example output
-![output](/screenshot/example_output.png)
+![output](/screenshot/example_output.eps)
