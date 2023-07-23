@@ -78,4 +78,4 @@ Rscript generate_heatmap.R -f file1.txt,file2.txt,file3.txt -n sample1,sample2,s
 ```
 
 Below is the example output
-![output](/screenshot/example_output.eps)
+![output](/screenshot/example_output.png)
